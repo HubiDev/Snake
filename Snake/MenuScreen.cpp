@@ -1,9 +1,18 @@
 #include "MenuScreen.h"
 
 /// <summary>
-/// Constructor
+/// Constructor.
 /// </summary>
-
+/// <param name="width">The width of the menu.</param>
+/// <param name="height">The height of the menu.</param>
+MenuScreen::MenuScreen(int width, int height)
+	: _Width(width), _Height(height)
+{
+	if (!_Font.loadFromFile("resources\\NotoSans-Regular.ttf"))
+	{
+		throw runtime_error("Couldn't load 'resources\\NotoSans-Regular.ttf'");
+	}
+};
 
 /// <summary>
 /// Destructor
@@ -47,16 +56,46 @@ void MenuScreen::addLine(const String& content, unsigned int size, int margin)
 		offsetX = (_Width - current.get()->getLocalBounds().width) / 2;
 
 		current.get()->setPosition(static_cast<float>(offsetX),
-									static_cast<float>(offsetY + usedSpace + curentMargin));
+			static_cast<float>(offsetY + usedSpace + curentMargin));
 		usedSpace += 2 * curentMargin + current.get()->getCharacterSize();
 	}
 }
 
 /// <summary>
-/// 
+/// Adds a command which is executed when the given key is pressed.
 /// </summary>
-/// <param name="target"></param>
-/// <param name="states"></param>
+/// <param name="key">The key.</param>
+/// <param name="command">The command.</param>
+void MenuScreen::addCommand(Keyboard::Key key, const function<void()>& command)
+{
+	//Check if command for key was already added
+	if (_Commands.find(key) != _Commands.end())
+	{
+		_Commands[key] = command;
+	}
+	else
+	{
+		_Commands.insert({ key, command });
+	}
+}
+
+/// <summary>
+/// Updates the menu screen.
+/// </summary>
+void MenuScreen::update()
+{
+	for (auto& current : _Commands)
+	{
+		if (Keyboard::isKeyPressed(current.first))
+		{
+			current.second();
+		}
+	}
+}
+
+/// <summary>
+/// Draws the menu.
+/// </summary>
 void MenuScreen::draw(RenderTarget& target, RenderStates states) const
 {
 	for (const auto& current : _TextLines)

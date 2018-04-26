@@ -39,6 +39,7 @@ void PointCounter::Increment()
 void PointCounter::reset()
 {
 	_PointCounter = 0;
+	_Text.setString("Points: " + to_string(_PointCounter));
 }
 
 /// <summary>
