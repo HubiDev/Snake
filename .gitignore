@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+/Snake/Debug
+/Snake/x64/Debug
+/.vs/Snake/v15
+/x64/Debug/Resources
