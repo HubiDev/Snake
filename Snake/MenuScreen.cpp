@@ -8,9 +8,9 @@
 MenuScreen::MenuScreen(int width, int height)
 	: _Width(width), _Height(height)
 {
-	if (!_Font.loadFromFile("resources\\NotoSans-Regular.ttf"))
+	if (!_Font.loadFromFile("Resources/NotoSans-Regular.ttf"))
 	{
-		throw runtime_error("Couldn't load 'resources\\NotoSans-Regular.ttf'");
+		throw runtime_error("Couldn't load 'Resources/NotoSans-Regular.ttf'");
 	}
 };
 

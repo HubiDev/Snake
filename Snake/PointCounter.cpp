@@ -6,7 +6,7 @@
 /// </summary>
 PointCounter::PointCounter()
 {
-	if (_Font.loadFromFile("Resources\\NotoSans-Regular.ttf"))
+	if (_Font.loadFromFile("Resources/NotoSans-Regular.ttf"))
 	{
 		_Text.setFont(_Font);
 		_Text.setCharacterSize(24);

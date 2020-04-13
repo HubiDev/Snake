@@ -4,7 +4,7 @@
 #include <memory>
 #include <functional>
 
-#include "SFML\Graphics.hpp"
+#include "SFML/Graphics.hpp"
 
 using namespace sf;
 using namespace std;
